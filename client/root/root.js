@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {renderRoutes} from 'react-router-config';
+import Container from './root-styled';
 
-const Root = ({route}) => (<main>{renderRoutes(route.routes)}</main>);
+const Root = ({route}) => (<Container>{renderRoutes(route.routes)}</Container>);
 
 Root.propTypes = {
   route: PropTypes.shape({
