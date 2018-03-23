@@ -1,9 +1,11 @@
 import express from 'express';
-import config from './config';
 import cors from 'cors';
 import path from 'path';
 import bodyParser from 'body-parser';
+import config from './config';
 import hot from '../webpack/hotreload-middleware';
+import setup from './setup';
+import './error';
 
 const app = express();
 
@@ -17,14 +19,7 @@ const DEV = process.env.NODE_ENV === 'development';
 if (DEV) {
   hot.useWebpackMiddleware(app);
 } else {
-  const clientConfig = webpackConfig.find(cnf => cnf.name === 'client');
-  const publicPath = clientConfig.output.publicPath;
-  const outputPath = clientConfig.output.path;
-  const clientStats = require('../build/stats.json');
-  const serverRender = require('../build/server/server.js').default;
-
-  app.use(publicPath, express.static(outputPath));
-  app.use(serverRender({clientStats, outputPath}));
+  setup(app);
 }
 
 const port = config.get('port');

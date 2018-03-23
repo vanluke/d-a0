@@ -21,17 +21,18 @@ const sendAppToBrowser = ({
   const {
     js,
     scripts,
-    styles,
     cssHash,
+    stylesheets,
   } = flushChunks(stats, {
     chunkNames: flushChunkNames(),
   });
+
   return res.render('index', {
     content,
     scripts,
     cssHash,
     js,
-    styles,
+    stylesheets,
     initialState,
   });
 };

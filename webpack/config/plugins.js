@@ -1,7 +1,7 @@
 /* eslint-disable */
 import webpack from 'webpack';
 import path from 'path';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import StatsPlugin from 'stats-webpack-plugin';
@@ -24,7 +24,7 @@ export default function ({ENV, DEV, PROD}) {
       },
     }),
     new StatsPlugin('stats.json'),
-    new MiniCssExtractPlugin({
+    new ExtractTextPlugin({
       filename: '[name].css',
       disable: false,
       allChunks: true,
@@ -35,7 +35,7 @@ export default function ({ENV, DEV, PROD}) {
 export const ssPlugins = function ({ENV, DEV, PROD}) {
   return [
     new webpack.HotModuleReplacementPlugin(),
-    new MiniCssExtractPlugin({
+    new ExtractTextPlugin({
       filename: '[name].css',
       disable: false,
       allChunks: true,

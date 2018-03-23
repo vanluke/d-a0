@@ -10,9 +10,9 @@ export const toggleIsBussy = createAction(DISPATCH);
 export const isBussyFinished = createAction(DISPATCH_FINISHED);
 export const isBussyError = createAction(DISPATCH_ERROR);
 
-export const testEpic = (action$) =>
+export const testEpic = action$ =>
   action$.ofType(DISPATCH)
-    .mergeMap(() => Observable.of(1,2,3,4,5)
+    .mergeMap(() => Observable.of(1, 2, 3, 4, 5)
       .map(numbers => isBussyFinished({numbers}))
       .catch(error => Observable.of(isBussyError({
         error,

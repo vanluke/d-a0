@@ -5,6 +5,7 @@ import {StaticRouter} from 'react-router';
 import {AppContainer} from 'react-hot-loader'; //eslint-disable-line
 import {ServerStyleSheet} from 'styled-components';
 import {renderRoutes} from 'react-router-config';
+import {rehydrateStyles} from '../helpers';
 
 const render = ({
   req,
@@ -13,17 +14,18 @@ const render = ({
   store,
 }) => {
   const sheet = new ServerStyleSheet();
+  const app = sheet.collectStyles(<Provider store={store}>
+    <StaticRouter
+      location={req && req.url}
+      context={context}
+    >
+      {renderRoutes(routes)}
+    </StaticRouter>
+  </Provider>); // eslint-disable-line
+
   return {
-    sheet,
-    content: renderToString(
-      <Provider store={store}>
-        <StaticRouter
-          location={req && req.url}
-          context={context}
-        >
-          {renderRoutes(routes)}
-        </StaticRouter>
-      </Provider>),
+    sheet: rehydrateStyles(sheet),
+    content: renderToString(app),
   };
 };
 

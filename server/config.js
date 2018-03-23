@@ -30,6 +30,7 @@ const conf = convict({
 
 const env = conf.get('env');
 const configPath = path.join(__dirname, '..', 'server-config');
+
 conf.loadFile(`${configPath}/${env}.json`);
 conf.validate({allowed: true});
 

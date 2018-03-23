@@ -18,7 +18,7 @@ module.exports = {
     },
     "rules": {
       "object-curly-spacing": [2, 'never'],
-      "object-curly-newline": ["error", {"minProperties": "3", "either": "true"}],
+      "object-curly-newline": ["error", {"consistent": true, "minProperties": 4}],
       "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
       "import/prefer-default-export": 1,
       "no-return-assign": 0,

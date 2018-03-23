@@ -16,4 +16,4 @@ export default mapToReducer({
   [DISPATCH]: state => state.set('isBussy', state.isBussy),
   [DISPATCH_ERROR]: (state, {payload}) => state.set('error', payload.error),
   [DISPATCH_FINISHED]: (state, {payload}) => state.set('numbers', payload.numbers),
- })(initState);
+})(initState);

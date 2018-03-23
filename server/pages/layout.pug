@@ -3,7 +3,8 @@ html(lang='en-UK')
   head
     meta(name='viewport' content='width=device-width, initial-scale=1')
     title= title
-    style= styles
+    each item in stylesheets
+     link(defer type="text/css" href= item rel="stylesheet")
   body
     block content
     each item in scripts

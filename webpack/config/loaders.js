@@ -1,5 +1,6 @@
 /* eslint-disable */
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import autoprefixer from 'autoprefixer';
 import path from 'path';
 /* eslint-enable */
 
@@ -70,7 +71,7 @@ const makeFileLoader = function loader(args) {
 };
 
 export const js = {
-  test: /\.js?$/,
+  test: /\.js$/,
   use: [
     'babel-loader', {
       options: {
@@ -100,78 +101,42 @@ export const jsSourceMap = {
 
 export const sass = {
   test: /\.(scss|css)$/,
-  use: [
-    MiniCssExtractPlugin.loader,
-    {
-      loader: 'css-loader',
-      options: {
-        minimize: {
-          safe: true
-        }
-      }
-    },
-    {
-      loader: 'postcss-loader',
-      options: {
-        autoprefixer: {
-          browsers: ['last 2 versions']
-        },
-        plugins: () => [
-          autoprefixer
-        ]
-      },
-    },
-    {
-      loader: 'sass-loader',
-      options: {}
-    }
-  ],
+  use: ExtractTextPlugin.extract({
+    fallback: 'style-loader',
+    use: [
+      'css-loader',
+      'postcss-loader',
+      'sass-loader',
+    ],
+  }),
 };
 
 export const serverCss = {
   test: /\.(scss|css)$/,
-  use: [
-    MiniCssExtractPlugin.loader,
-    {
-      loader: 'css-loader',
-      options: {
-        minimize: {
-          safe: true,
+  use: ExtractTextPlugin.extract({
+    fallback: 'isomorphic-style-loader',
+    use: [
+      {
+        loader: 'css-loader',
+        options: {
           modules: true,
           importLoaders: 1,
           localIdentName: '[hash:base64:10]',
           sourceMap: true,
-        }
-      }
-    },
-    {
-      loader: 'postcss-loader',
-      options: {
-        autoprefixer: {
-          browsers: ['last 2 versions']
         },
-        plugins: () => [
-          autoprefixer
-        ]
       },
-    },
-    {
-      loader: 'sass-loader',
-      options: {}
-    }
-  ],
-};
-
-export const json = {
-  test: /\.json?$/,
-  exclude: /node_modules/,
-  use: [
-    'json-loader',
-  ],
+      {
+        loader: 'postcss-loader',
+      },
+      {
+        loader: 'sass-loader',
+      },
+    ],
+  }),
 };
 
 export const eslint = {
-  test: /\.js?$/,
+  test: /\.js$/,
   enforce: 'pre',
   use: [
     'eslint-loader',
@@ -189,6 +154,6 @@ export const woffLoader = makeFileLoader('woff');
 export const ttfLoader = makeFileLoader('ttf');
 export const jpgLoader = makeFileLoader('jpg');
 
-export default [jsSourceMap, eslint, js, pug, json, sass,
+export default [jsSourceMap, eslint, js, pug, sass,
   svgLoader, eotLoader, woffLoader,
   ttfLoader, jpgLoader];

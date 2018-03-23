@@ -1,15 +1,24 @@
-import Root from '../root';
-import Test from '../test';
+import React from 'react';
+import Login from 'client/authentication/login';
+import Root from 'client/root';
+import withPrivateRoute from './private-routes';
+
+const Home = () => (<span>Home route</span>);
 
 export const routes = [
   {
     component: Root,
     path: '/',
-    children: [
+    routes: [
       {
         exact: true,
-        path: '/test',
-        component: Test,
+        path: '/login',
+        component: Login,
+      },
+      {
+        exact: true,
+        component: withPrivateRoute(Home)('login'),
+        path: '/home',
       },
     ],
   },

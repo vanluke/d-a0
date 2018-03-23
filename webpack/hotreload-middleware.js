@@ -4,9 +4,9 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackServerHotMiddleware from 'webpack-server-middleware';
 /* eslint-enable */
-const webpackconfig = require('../webpack.config.js');
-const clientConfig = require('./webpack.client');
-const serverConfig = require('./webpack.server');
+const webpackconfig = require('../webpack.config');
+const clientConfig = require('./webpack.client'); // eslint-disable-line
+const serverConfig = require('./webpack.server'); // eslint-disable-line
 
 function useWebpackMiddleware(app) {
   const compiler = webpack(webpackconfig);
