@@ -21,7 +21,7 @@ const sendAppToBrowser = ({
   const {
     js,
     scripts,
-    cssHash,
+    // cssHash,
     stylesheets,
   } = flushChunks(stats, {
     chunkNames: flushChunkNames(),
@@ -30,7 +30,6 @@ const sendAppToBrowser = ({
   return res.render('index', {
     content,
     scripts,
-    cssHash,
     js,
     stylesheets,
     initialState,

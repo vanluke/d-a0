@@ -1,9 +1,7 @@
-import React from 'react';
 import Login from 'client/authentication/login';
 import Root from 'client/root';
+import Home from 'client/landing';
 import withPrivateRoute from './private-routes';
-
-const Home = () => (<span>Home route</span>);
 
 export const routes = [
   {

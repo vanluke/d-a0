@@ -28,6 +28,7 @@ const Root = styled.main`
   font-size: medium;
   font-family: 'PT Sans Narrow', sans-serif;
   height: 100vh;
+  overflow: auto;
 `;
 
 export default Root;

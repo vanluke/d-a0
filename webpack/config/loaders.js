@@ -54,14 +54,24 @@ const makeFileLoader = function loader(args) {
           options: {
             hash: 'sha512',
             digest: 'hex',
-            name: 'hash].[ext]',
+            name: '[hash].[ext]',
           },
         }, {
           loader: 'image-webpack-loader',
           options: {
-            bypassOnDebug: true,
-            optimizationLevel: 7,
-            interlaced: false,
+            mozjpeg: {
+              progressive: true,
+            },
+            gifsicle: {
+              interlaced: false,
+            },
+            optipng: {
+              optimizationLevel: 4,
+            },
+            pngquant: {
+              quality: '75-90',
+              speed: 3,
+            },
           },
         }],
       };
@@ -89,6 +99,18 @@ export const js = {
     },
   ],
   exclude: [/node_modules/, `${__dirname}/src/client.js`],
+};
+
+export const video = {
+  test: /\.(mov|mp4|webm|ogv)$/,
+  use: [
+    {
+      loader: 'file-loader',
+      options: {
+        name: '[name].[ext]',
+      },
+    },
+  ],
 };
 
 export const jsSourceMap = {
@@ -155,5 +177,5 @@ export const ttfLoader = makeFileLoader('ttf');
 export const jpgLoader = makeFileLoader('jpg');
 
 export default [jsSourceMap, eslint, js, pug, sass,
-  svgLoader, eotLoader, woffLoader,
+  svgLoader, eotLoader, woffLoader, video,
   ttfLoader, jpgLoader];

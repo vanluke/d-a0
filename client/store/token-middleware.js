@@ -1,8 +1,8 @@
-import {getIdToken, clearIdToken, isTokenValid} from 'client/users/id-token-service';
+import {getToken, clearIdToken, isTokenValid} from 'client/users/access-token-service';
 
 const checkTokenExpirationMiddleware = () => next => (action) => {
-  const token = getIdToken();
-  if (!isTokenValid(token)) {
+  const token = getToken();
+  if (token && !isTokenValid(token)) {
     clearIdToken();
     return next(action);
   }

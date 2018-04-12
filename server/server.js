@@ -2,10 +2,14 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import bodyParser from 'body-parser';
+import 'localstorage-polyfill';
 import config from './config';
 import hot from '../webpack/hotreload-middleware';
 import setup from './setup';
+
 import './error';
+
+//global['localStorage'] = localStorage;
 
 const app = express();
 

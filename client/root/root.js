@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {renderRoutes} from 'react-router-config';
+import NavBar from 'client/nav-bar';
 import Container from './root-styled';
 
 const Root = ({route}) => (
   <Container>
+    <NavBar />
     {renderRoutes(route.routes)}
   </Container>
 );

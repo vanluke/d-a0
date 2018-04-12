@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {radicalred} from 'client/assets/palette/palette';
 
 export const ArrowSvg = styled.svg`
   opacity: 0;
@@ -15,6 +16,6 @@ export const ArrowSvg = styled.svg`
 
 export const ArrowPath = styled.path`
   fill: none;
-  stroke: #ff334f;
+  stroke: ${radicalred};
   stroke-width: 2px;
 `;
