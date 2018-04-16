@@ -1,7 +1,6 @@
 import {
   branch,
   defaultProps,
-  withPropsOnChange,
   renderComponent,
   compose,
   pure,
@@ -15,15 +14,11 @@ import LoginButton from './login-button-container';
 
 const withBranch = C => compose(
   defaultProps({user: Immutable({})}),
-  connect(({user, location}) => ({user, location})),
   pure,
   withRouter,
-  withPropsOnChange(
-    () => true,
-    ({user}) => ({user}),
-  ),
+  connect(({user, match}) => ({user, match})),
   branch(
-    props => props.user.isAuthenticated && !isLoginPathname(props.location),
+    props => props.user.isAuthenticated && !isLoginPathname(props.match),
     renderComponent(UserDropdown),
     renderComponent(LoginButton),
   ),

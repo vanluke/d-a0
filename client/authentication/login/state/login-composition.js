@@ -1,6 +1,9 @@
 import {compose, withState, mapProps} from 'recompose';
 import {reduce} from 'lodash';
 import React from 'react';
+import {connect} from 'react-redux';
+import {setUser} from 'client/users/user-actions';
+import {getIdToken} from 'client/users/id-token-service';
 import ErrorMessage from 'client/common/components/error-message';
 import authenticationService, {tokenService} from 'client/authentication/authentication-service';
 import config from 'client/common/config';
@@ -13,6 +16,7 @@ const constructErrors = (errors, touched) => reduce(errors, (acc, curr, i) => ({
 
 const WithValidation = (initialState, validationRules) =>
   compose(
+    connect(null, {setUser}),
     withState('state', 'updateState', {...initialState, errors: {}}),
     mapProps(({updateState, state, ...rest}) => ({
       onSubmit: (event) => {
@@ -29,6 +33,7 @@ const WithValidation = (initialState, validationRules) =>
               .setToken(response.access_token);
             tokenService(config.token.idToken)
               .setToken(response.id_token);
+            rest.setUser(getIdToken());
             rest.history.push('/');
           });
       },
@@ -56,5 +61,6 @@ const WithValidation = (initialState, validationRules) =>
       ...rest,
     })),
   );
+
 
 export default WithValidation;

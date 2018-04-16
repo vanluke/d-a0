@@ -1,4 +1,4 @@
 const loginPathname = '/login';
 
 export const isLoginPathname = location =>
-  location && location.pathname.includes(loginPathname);
+  location && location.path.includes(loginPathname);

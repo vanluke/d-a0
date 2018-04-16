@@ -1,18 +1,15 @@
 import jwt from 'jsonwebtoken';
-
-const getStorage = typeof window !== 'undefined' && window && window.localStorage;
-
-const localStorage = () => getStorage || global.localStorage;
+import storage from 'client/common/storage';
 
 const tokenService = key => ({
   setToken(token) {
-    localStorage().setItem(key, token);
+    storage().setItem(key, token);
   },
   getToken() {
-    return localStorage().getItem(key);
+    return storage().getItem(key);
   },
   removeToken() {
-    localStorage().removeItem(key);
+    storage().removeItem(key);
   },
   decode(token) {
     return jwt.decode(token);

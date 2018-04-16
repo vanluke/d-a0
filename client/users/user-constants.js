@@ -1,1 +1,1 @@
-export const NAV_INIT = 'trust/user-init';
+export const USER_SET = 'trust/user-set';
