@@ -77,4 +77,4 @@ export const Header = styled.h1`
   letter-spacing: .3rem;
   left: 50%;
   transform: translate(-50%, -50%);
-`
+`;

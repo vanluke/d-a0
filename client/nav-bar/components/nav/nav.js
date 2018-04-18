@@ -5,17 +5,17 @@ import {
   NavList,
   NavItem,
   NavItemRight,
-  Link,
+  Link as Anchor,
 } from './nav-styled';
 
 const Navigation = () => (
   <Nav>
     <NavList>
       <NavItem>
-        <Link to="/home">home</Link>
+        <Anchor to="/home">home</Anchor>
       </NavItem>
       <NavItem>
-        <Link to="/posts">posts</Link>
+        <Anchor to="/posts">posts</Anchor>
       </NavItem>
       <NavItemRight>
         <UserNav />
