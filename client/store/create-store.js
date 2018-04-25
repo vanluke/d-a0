@@ -2,13 +2,15 @@ import {createEpicMiddleware} from 'redux-observable';
 import {createLogger} from 'redux-logger';
 import {createStore, applyMiddleware} from 'redux';
 import {getIdToken} from 'client/users/id-token-service';
-import rootReducer from '../reducer';
+import rootEpic from 'client/epic';
+import {profileService} from 'client/users/profile';
+import rootReducer from 'client/reducer';
 import tokenMiddleware from './token-middleware';
-import rootEpic from '../epic';
 
 const loggerMiddleware = createLogger();
 
 export const dependencies = {
+  profileService,
 };
 
 export const epicMiddleware = createEpicMiddleware(rootEpic, {

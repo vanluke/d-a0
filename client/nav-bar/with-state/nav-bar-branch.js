@@ -2,6 +2,7 @@ import {
   branch,
   defaultProps,
   renderComponent,
+  withHandlers,
   compose,
   pure,
 } from 'recompose';
@@ -11,17 +12,20 @@ import {connect} from 'react-redux';
 import {isLoginPathname} from 'client/common/utils';
 import UserDropdown from '../components/user-dropdown';
 import LoginButton from './login-button-container';
+import handleLogout from './user-dropdown-side-efects';
 
-const withBranch = C => compose(
+const withBranch = compose(
   defaultProps({user: Immutable({})}),
   pure,
   withRouter,
   connect(({user, match}) => ({user, match})),
+  withHandlers({
+    logout: ({dispatch, history}) => () => handleLogout({dispatch, history}),
+  }),
   branch(
     props => props.user.isAuthenticated && !isLoginPathname(props.match),
     renderComponent(UserDropdown),
-    renderComponent(LoginButton),
   ),
-)(C);
+);
 
-export default withBranch(UserDropdown);
+export default withBranch(LoginButton);

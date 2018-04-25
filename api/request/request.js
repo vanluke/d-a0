@@ -8,6 +8,7 @@ const request = ({
   data = {},
   url = '',
   method = 'get',
+  headers,
 }) => ajax({
   method,
   body: data,
@@ -15,6 +16,7 @@ const request = ({
   headers: {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
+    ...headers,
   },
 }).catch(e => Observable.of(e));
 

@@ -77,6 +77,15 @@ export const Text = styled(NavLink)`
   `}
 `;
 
+export const TextLink = styled(Text)`
+  display: inline;
+  color: ${darkgrey};
+
+  &:hover {
+    color: ${darkslategray};
+  }
+`;
+
 export const Input = styled.input`
   display: none;
   &:checked ~ ${List} {

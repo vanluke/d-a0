@@ -1,8 +1,6 @@
 import {createAction} from 'redux0-helpers';
 import {
-  LOGOUT,
-  LOGIN,
-} from './nav-bar-constants';
+  USER_CLEAN,
+} from 'client/users/user-constants';
 
-export const logout = createAction(LOGOUT);
-export const login = createAction(LOGIN);
+export const logout = createAction(USER_CLEAN);

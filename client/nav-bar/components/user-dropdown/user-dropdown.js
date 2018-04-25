@@ -11,12 +11,13 @@ import {
   Details,
   Name,
   Text,
+  TextLink,
   Email,
 } from './user-dropdown-styled';
 
-const UserDropdown = ({user}) => (
+const UserDropdown = ({user, logout}) => (
   <Nav>
-    <Text to="/me">Your profile</Text>
+    <Text to="/profile">Your profile</Text>
     <Input type="checkbox" id="toggle" />
     <Label htmlFor="toggle">
       <Img src={user.picture} />
@@ -29,10 +30,10 @@ const UserDropdown = ({user}) => (
         </Details>
       </ListItem>
       <ListItem>
-        <Button>Your Profile</Button>
+        <TextLink to="/profile">Your Profile</TextLink>
       </ListItem>
       <ListItem>
-        <Button>Sign out</Button>
+        <Button onClick={logout}>Sign out</Button>
       </ListItem>
     </List>
   </Nav>
@@ -44,6 +45,7 @@ UserDropdown.propTypes = {
     email: PropTypes.string.isRequired,
     picture: PropTypes.string.isRequired,
   }).isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 export default UserDropdown;

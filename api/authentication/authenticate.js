@@ -16,14 +16,13 @@ export default (req, res) => {
     username: securityService.decrypt(login),
     password: securityService.decrypt(password),
     audience,
-    scope: 'openid read:current_user',
+    scope: 'openid read:current_user update:current_user_metadata',
     client_id: clientId,
     client_secret: clientSecret,
   };
   return request({
     url: routes.token,
     method: 'post',
-    headers: {'content-type': 'application/json'},
     data: tokenBody,
   }).map(({response}) => response)
     .catch(err => res.send(500, err))

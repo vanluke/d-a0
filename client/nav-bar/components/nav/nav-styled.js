@@ -4,8 +4,8 @@ import {media} from 'client/common/utils';
 import {powderblue} from 'client/assets/palette/palette';
 
 export const Nav = styled.nav`
-  position: fixed;
-  width: 100%;
+  position: relative;
+  height: 8%;
   text-align: center;
   z-index: 1;
   background: rgba(0, 0, 0, .4);
@@ -35,6 +35,9 @@ export const Link = styled(NavLink)`
 `;
 
 export const NavList = styled.ul`
+  position: fixed;
+  height: 8%;
+  width: 100%;
   list-style: none;
   padding: 0;
 `;

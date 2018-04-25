@@ -66,6 +66,26 @@ const conf = convict({
     default: '',
     env: 'secret',
   },
+  cloudinary: {
+    apiKey: {
+      doc: 'API Key',
+      format: '*',
+      default: '',
+      env: 'cloudinary',
+    },
+    apiSecret: {
+      doc: 'API Secret',
+      format: '*',
+      default: '',
+      env: 'cloudinary',
+    },
+    cloudName: {
+      doc: 'cloud name',
+      format: '*',
+      default: '',
+      env: 'cloudinary',
+    }
+  }
 });
 
 const env = conf.get('env');

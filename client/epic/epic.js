@@ -1,4 +1,4 @@
 import {combineEpics} from 'redux-observable';
-import {testEpic} from '../test/state';
+import {updateProfileEpic} from 'client/users/profile/state';
 
-export default combineEpics(testEpic);
+export default combineEpics(updateProfileEpic);
