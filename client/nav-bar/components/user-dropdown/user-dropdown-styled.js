@@ -45,6 +45,7 @@ export const Img = styled.img`
   border-radius: 50%;
   height: 35px;
   display: none;
+  cursor: pointer;
 
   ${media.tablet`
     display: block;

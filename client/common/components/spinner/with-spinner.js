@@ -1,8 +1,8 @@
 import {branch, renderComponent} from 'recompose';
 import Spinner from './spinner';
 
-const withLoading = branch(
-  props => props.loading,
+const withLoading = loading => branch(
+  loading,
   renderComponent(Spinner),
 );
 

@@ -26,12 +26,11 @@ const sendAppToBrowser = ({
   } = flushChunks(stats, {
     chunkNames: flushChunkNames(),
   });
-
   return res.render('index', {
     content,
-    scripts,
+    scripts: scripts && scripts.map(s => `/${s}`),
     js,
-    stylesheets,
+    stylesheets: stylesheets && stylesheets.map(s => `/${s}`),
     initialState,
   });
 };

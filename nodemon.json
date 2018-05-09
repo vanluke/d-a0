@@ -1,5 +1,6 @@
 {
   "ignore": [
+    "server/**",
     "server/metadata/*",
     "client/**"
   ]

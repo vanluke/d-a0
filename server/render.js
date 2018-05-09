@@ -1,12 +1,14 @@
 import routes from '../client/routes';
 import {send, matchRoutes} from './middleware';
-import configureStore from '../client/store';
+import configureStore, {dependencies} from '../client/store';
 
 const store = configureStore();
 
-export default stats => (req, res) => {
+export default stats => async (req, res) => {
   const handleRoutes = matchRoutes({
     routes,
+    store,
+    dependencies,
     render: () => send({
       res,
       req,
@@ -15,5 +17,5 @@ export default stats => (req, res) => {
       stats,
     }),
   });
-  return handleRoutes({res, req});
+  return await handleRoutes({res, req});
 };

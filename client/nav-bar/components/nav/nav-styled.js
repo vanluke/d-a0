@@ -5,6 +5,7 @@ import {powderblue} from 'client/assets/palette/palette';
 
 export const Nav = styled.nav`
   position: relative;
+  width: 100%;
   height: 8%;
   text-align: center;
   z-index: 1;
@@ -21,6 +22,7 @@ export const NavItem = styled.li`
 export const NavItemRight = styled(NavItem)`
   padding: 0;
   margin-right: 10px;
+
   ${media.tablet`
     float: right;
   `}
@@ -35,7 +37,7 @@ export const Link = styled(NavLink)`
 `;
 
 export const NavList = styled.ul`
-  position: fixed;
+  position: absolute;
   height: 8%;
   width: 100%;
   list-style: none;

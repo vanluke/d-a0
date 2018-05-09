@@ -1,1 +1,1 @@
-export {default} from './create-store';
+export {default, dependencies} from './create-store';

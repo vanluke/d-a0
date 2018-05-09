@@ -24,7 +24,7 @@ export default (req, res) => {
     url: routes.token,
     method: 'post',
     data: tokenBody,
-  }).map(({response}) => response)
+  }).map(({response, status}) => ({status, response}))
     .catch(err => res.send(500, err))
-    .subscribe(response => res.send(200, response));
+    .subscribe(({response, status}) => res.send(status, response));
 };

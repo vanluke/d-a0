@@ -30,8 +30,8 @@ export default (req, res) => {
         authorization,
       },
       data: JSON.stringify({...picture}),
-    }).map(({response, code}) => ({response, code}))
+    }).map(({response, status}) => ({response, status}))
       .catch(err => res.send(500, err))
-      .subscribe(({response, code}) => res.send(code, response));
+      .subscribe(({response, status}) => res.send(status, response));
   });
 };

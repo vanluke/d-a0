@@ -66,6 +66,26 @@ const conf = convict({
     default: '',
     env: 'secret',
   },
+  store: {
+    user: {
+      doc: 'User',
+      format: '*',
+      default: '',
+      env: 'store',
+    },
+    password: {
+      doc: 'Password',
+      format: '*',
+      default: '',
+      env: 'store',
+    },
+    uri: {
+      doc: 'Store URI',
+      format: '*',
+      default: '',
+      env: 'store',
+    },
+  },
   cloudinary: {
     apiKey: {
       doc: 'API Key',

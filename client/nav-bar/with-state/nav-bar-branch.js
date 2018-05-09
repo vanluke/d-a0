@@ -12,7 +12,7 @@ import {connect} from 'react-redux';
 import {isLoginPathname} from 'client/common/utils';
 import UserDropdown from '../components/user-dropdown';
 import LoginButton from './login-button-container';
-import handleLogout from './user-dropdown-side-efects';
+import logoutComposition from './user-dropdown-side-efects';
 
 const withBranch = compose(
   defaultProps({user: Immutable({})}),
@@ -20,7 +20,7 @@ const withBranch = compose(
   withRouter,
   connect(({user, match}) => ({user, match})),
   withHandlers({
-    logout: ({dispatch, history}) => () => handleLogout({dispatch, history}),
+    logout: ({dispatch, history}) => () => logoutComposition({dispatch, history}),
   }),
   branch(
     props => props.user.isAuthenticated && !isLoginPathname(props.match),
