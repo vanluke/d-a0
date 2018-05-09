@@ -4,7 +4,7 @@ import secretService from './secret-service';
 
 const authenticationPath = `${config.api.path}/authenticate`;
 
-const mixUpClaims = ({login, password}) => {
+export const mixUpClaims = ({login, password}) => {
   const loginEncrypted = secretService.encrypt(login);
   const passwordEncrypted = secretService.encrypt(password);
   return {

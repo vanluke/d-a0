@@ -1,7 +1,7 @@
-import 'babel-polyfill';
-import 'raf/polyfill';
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import 'babel-polyfill'; // eslint-disable-line
+import 'raf/polyfill'; // eslint-disable-line
+import Enzyme from 'enzyme'; // eslint-disable-line
+import Adapter from 'enzyme-adapter-react-16'; // eslint-disable-line
 
 Enzyme.configure({adapter: new Adapter()});
 

@@ -12,7 +12,7 @@
     "lint:js": "node_modules/.bin/eslint \"@(client|server|api|test)/**/*.@(js|jsx)\"",
     "lint": "npm run lint:js && npm run lint:css",
     "build": "cross-env NODE_ENV=development node_modules/.bin/webpack -p",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=development jest"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,7 @@
     "autoprefixer": "^8.1.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
-    "babel-jest": "^22.4.1",
+    "babel-jest": "^22.4.3",
     "babel-loader": "^7.1.4",
     "babel-plugin-styled-components": "^1.5.1",
     "babel-plugin-universal-import": "^1.4.0",
@@ -126,5 +126,35 @@
     "url": "^0.11.0",
     "webpack-flush-chunks": "^1.2.3",
     "xhr2": "^0.1.4"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
+    "setupFiles": [
+      "<rootDir>/jest/setup.js"
+    ],
+    "transform": {
+      "\\.(css|less|scss)$": "<rootDir>/__mocks__/style-mock.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/file-mock.js",
+      "^.+\\.js$": "babel-jest"
+    },
+    "moduleDirectories": [
+      "node_modules",
+      "<rootDir>"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ],
+    "globals": {
+      "__DEV__": true,
+      "__WEB_ROOT__": "/"
+    },
+    "roots": [
+      "<rootDir>"
+    ],
+    "projects": [
+      "<rootDir>"
+    ]
   }
 }
