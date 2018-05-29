@@ -27,12 +27,11 @@ export const postsConnectEpic = (action$, store, {postsService}) =>
       .catch(error =>
         Observable.of(connectPostsFails({
           error,
-        }))
-    ).map(posts => compose(
-      p => connectPostsReceive({posts: p}),
-      mapPosts,
-    )(posts)),
-  );
+        })))
+      .map(posts => compose(
+        p => connectPostsReceive({posts: p}),
+        mapPosts,
+      )(posts)));
 
 export const postsCloseEpic = (action$, store, {postsService}) =>
   action$.ofType(CONNECT_CLOSE)

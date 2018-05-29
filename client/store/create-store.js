@@ -6,7 +6,6 @@ import rootEpic from 'client/epic';
 import {profileService} from 'client/users/profile';
 import {postsService} from 'client/posts';
 import rootReducer from 'client/reducer';
-import tokenMiddleware from './token-middleware';
 
 const loggerMiddleware = createLogger();
 

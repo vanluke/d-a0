@@ -56,7 +56,9 @@ const WithValidation = (initialState, validationRules) =>
           }
         )),
       isValid: state.isValid,
+      isLoading: state.isLoading,
       form: state.form,
+      touched: state.touched,
       errors: state.errors,
       ...rest,
     })),

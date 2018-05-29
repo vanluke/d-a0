@@ -32,7 +32,7 @@ test('should authenticate mixup sensitive data', async () => {
   };
   const authenticationPath = `${config.api.path}/authenticate`;
   const expectedClains = mixUpClaims(props);
-   const expected = { 
+  const expected = {
     data: {
       ...expectedClains,
     },

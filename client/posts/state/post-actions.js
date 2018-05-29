@@ -20,7 +20,6 @@ export const getPostEpic = (action$, store, {postsService}) =>
       .catch(error =>
         Observable.of(postFails({
           error,
-        }))
-    ).map(({response}) => response)
-    .map(post => postReceive({post})),
-  );
+        })))
+      .map(({response}) => response)
+      .map(post => postReceive({post})));

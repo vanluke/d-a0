@@ -5,9 +5,9 @@ import {
   mergeWith,
 } from 'lodash/fp';
 
-const makePredicate = ([predicate, error]) => a => (predicate(a) ? null : error);
+export const makePredicate = ([predicate, error]) => a => (predicate(a) ? null : error);
 
-const makePredicates = map(makePredicate);
+export const makePredicates = map(makePredicate);
 
 const runPredicates = ({input, validations}) =>
   map(predFn => predFn(input), makePredicates(validations));

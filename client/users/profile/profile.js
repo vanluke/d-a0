@@ -1,5 +1,4 @@
 import React from 'react';
-//import {connect} from 'react-redux';
 import {
   Tabs,
   Tab,
@@ -30,11 +29,5 @@ const Profile = () => (
     </TabPanels>
   </Tabs>
 );
-
-// Profile.propTypes = {
-//   user: PropTypes.shape({
-//     email: PropTypes.string,
-//   }).isRequired,
-// };
 
 export default Profile;

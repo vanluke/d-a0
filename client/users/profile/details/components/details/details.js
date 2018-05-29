@@ -11,7 +11,6 @@ const ProfileDetails = ({
   name,
   email,
   nickname,
-  picture,
 }) => (
   <Details>
     <Row>
@@ -33,7 +32,6 @@ ProfileDetails.propTypes = {
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   nickname: PropTypes.string.isRequired,
-  picture: PropTypes.string.isRequired,
 };
 
 export default ProfileDetails;

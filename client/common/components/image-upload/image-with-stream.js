@@ -20,8 +20,7 @@ const ImageStream = initState => componentFromStream((props$) => {
     props.render({
       ...on,
       readFile,
-    }),
-  );
+    }));
 });
 
 export default ImageStream;

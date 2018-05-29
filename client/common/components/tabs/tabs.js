@@ -27,7 +27,7 @@ class Tabs extends Component {
         case 'TabList':
           return cloneElement(child, {
             activeIndex: this.state.activeIndex,
-            onActivate: activeIndex => this.onActivate(activeIndex),
+            onActivate: this.onActivate,
           });
         default:
           return child;

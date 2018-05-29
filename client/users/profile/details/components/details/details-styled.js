@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import {media} from 'client/common/utils';
-import {white, bluelagoon, bigstone, smoke} from 'client/assets/palette/palette';
+import {
+  white,
+  smoke,
+} from 'client/assets/palette/palette';
 
 export const Input = styled.input`
   font-size: 14px;

@@ -34,7 +34,8 @@ const Post = ({
   description,
   registered,
 }) => (
-  location && <Section>
+  location && (
+  <Section>
     <Image src={image} alt={name} />
     <Metadata>
       <Number date={registered} />
@@ -53,7 +54,7 @@ const Post = ({
       <Email>{email}</Email>
     </Contact>
   </Section>
-);
+  ));
 
 
 Post.propTypes = {

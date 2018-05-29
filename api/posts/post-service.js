@@ -15,9 +15,7 @@ const createPost = (userId, post) => ({
 
 const postService = {
   getPostsById(postId) {
-    return new Promise((resolve) => {
-      return setTimeout(() => resolve(posts.find(p => p.id === postId)), 900);
-    });
+    return new Promise(resolve => setTimeout(() => resolve(posts.find(p => p.id === postId)), 900));
   },
   async create(userId, post) {
     try {
@@ -29,10 +27,8 @@ const postService = {
       throw e;
     }
   },
-  getPosts(userId) {
-    return new Promise((resolve) => {
-      return setTimeout(() => resolve(posts), 900);
-    });
+  getPosts() {
+    return new Promise(resolve => setTimeout(() => resolve(posts), 900));
   },
 };
 

@@ -1,5 +1,4 @@
 import React, {PureComponent} from 'react';
-import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {
@@ -11,11 +10,6 @@ import {
 import Details from './components/details';
 
 class PostDetails extends PureComponent {
-  // componentDidMount() {
-  //   const {initialize, match: {params}} = this.props;
-  //   return initialize(params);
-  // }
-
   render() {
     const {isLoading, post} = this.props;
     return (<Details {...post} isLoading={isLoading} />);

@@ -7,8 +7,8 @@ export default (server) => {
     serveClient: false,
   }).on('connection', async (socket) => {
     socket.emit('posts::message', await postService.getPosts());
-    socket.on('posts::receive', (data) => {
+    socket.on('posts::receive', (/* data */) => {
       // await postService.createPosts()
     });
   });
-}
+};

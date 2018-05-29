@@ -46,13 +46,11 @@ Card.propTypes = {
   title: PropTypes.string.isRequired,
   about: PropTypes.string.isRequired,
   makes: PropTypes.string.isRequired,
-  phone: PropTypes.string,
   tags: PropTypes.string,
 };
 
 Card.defaultProps = {
   tags: '',
-  phone: '',
 };
 
 export default Card;

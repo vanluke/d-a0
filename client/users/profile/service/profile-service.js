@@ -10,5 +10,5 @@ export const profileService = {
       method: 'put',
       data: payload,
     });
-  }
+  },
 };

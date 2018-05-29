@@ -26,6 +26,7 @@ const initialState = {
     password: false,
   },
   isValid: false,
+  isLoading: false,
 };
 
 const enhanced = withValidation(initialState, validationRules);

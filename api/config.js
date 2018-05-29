@@ -104,8 +104,8 @@ const conf = convict({
       format: '*',
       default: '',
       env: 'cloudinary',
-    }
-  }
+    },
+  },
 });
 
 const env = conf.get('env');

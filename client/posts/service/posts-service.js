@@ -26,7 +26,7 @@ class PostsService {
     this.socket.disconnect();
   }
 
-  getPost({postId}) {
+  getPost({postId}) { // eslint-disable-line
     return request({
       url: `${postsEndpoint}/${postId}`,
       method: 'get',
