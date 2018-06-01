@@ -6,7 +6,6 @@ yarn-debug.log*
 yarn-error.log*
 build
 server-config/*.json
-client/common/config/*.json
 api/config/*.json
 
 # Runtime data

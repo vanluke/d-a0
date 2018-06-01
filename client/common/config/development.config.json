@@ -1,0 +1,19 @@
+{
+  "api": {
+    "path": "http://localhost:3001/api/v0"
+  },
+  "token": {
+    "idToken": "$$$^%!",
+    "accessToken": "##$%664"
+  },
+  "salt": "CONERYJAMESKlMQP",
+  "sockets": {
+    "posts": {
+      "endpoint": "http://localhost:3001",
+      "message": "posts::message",
+      "post": "posts::receive",
+      "put": "posts::put",
+      "delete": "posts::delete"
+    }
+  }
+}
