@@ -18,7 +18,7 @@ export const getPostEpic = (action$, store, {postsService}) =>
   action$.ofType(GET_POST)
     .mergeMap(action => postsService.getPost(action.payload)
       .catch(error =>
-        Observable.of(postFails({
+        Observable.throw(postFails({
           error,
         })))
       .map(({response}) => response)

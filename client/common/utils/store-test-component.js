@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {MemoryRouter} from 'react-router';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 
 export const defaultStore = createStore(() => ({}));
 
 const Container = ({children, store}) => (
-  <Provider store={store || defaultStore}>
-    {children}
-  </Provider>
+  <MemoryRouter>
+    <Provider store={store || defaultStore}>
+      {children}
+    </Provider>
+  </MemoryRouter>
 );
 
 Container.propTypes = {

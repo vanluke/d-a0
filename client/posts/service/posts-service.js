@@ -1,4 +1,7 @@
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toArray';
+import 'rxjs/add/operator/toPromise';
 import io from 'socket.io-client';
 import request from 'client/common/request';
 import config from 'client/common/config';
@@ -23,7 +26,7 @@ class PostsService {
   }
 
   disconnect() {
-    this.socket.disconnect();
+    this.socket && this.socket.disconnect(); // eslint-disable-line
   }
 
   getPost({postId}) { // eslint-disable-line

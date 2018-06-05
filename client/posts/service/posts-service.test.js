@@ -1,61 +1,41 @@
-// import {Observable} from 'rxjs/Observable';
-// import io from 'socket.io-client';
-// import request from 'client/common/request';
-// import config from 'client/common/config';
-
-// const {posts} = config.sockets;
-// const {path} = config.api;
-
-// const postsEndpoint = `${path}/posts`;
-
-// class PostsService {
-//   constructor(endpoint) {
-//     this.endpoint = endpoint;
-//     this.socket = null;
-//   }
-
-//   connect() {
-//     this.socket = io(this.endpoint);
-//     return new Observable((observer) => {
-//       this.socket.on(posts.message, data => observer.next(data));
-//       return () => this.socket.disconnect();
-//     });
-//   }
-
-//   disconnect() {
-//     this.socket.disconnect();
-//   }
-
-//   getPost({postId}) { // eslint-disable-line
-//     return request({
-//       url: `${postsEndpoint}/${postId}`,
-//       method: 'get',
-//     });
-//   }
-// }
-
-// const postsService = new PostsService(posts.endpoint);
-
-// export default postsService;
 import {Server, SocketIO} from 'mock-socket';
 import postsService from './posts-service';
 
+jest.mock('socket.io-client');
+import * as io from 'socket.io-client'; // eslint-disable-line
+jest.mock('client/common/request');
+import * as lib from 'client/common/request'; // eslint-disable-line
+
+
 describe('Posts Service', () => {
-  it('should connect to the socket', (done) => {
-    const mockServer = new Server('http://localhost:3001/');
+  io.default.mockImplementation(SocketIO);
+  const requestFN = jest.fn();
+  lib.default.mockImplementation(requestFN);
+  it('should connect receive message', (done) => {
+    const mockServer = new Server('http://localhost:3001');
+    const connectPayload = [{
+      id: 1,
+    }, {
+      id: 2,
+    }];
     mockServer.on('connection', () => {
-      console.log('BOPOM!!!');
-      mockServer.emit('posts::message', 'test message 1');
+      mockServer.emit('posts::message', [connectPayload]);
     });
-    window.io = SocketIO;
-    setTimeout(() => {
-      postsService.connect();
-      const actual = postsService.socket;
-      console.log(postsService.socket);
-      expect(actual).toBeDefined();
-      done();
-    }, 100);
+    postsService.connect().subscribe((response) => {
+     expect(response).toEqual(connectPayload);
+     done();
+     mockServer.stop();
+    });
   });
-  it('should gets posts');
-  it('should disconnect from socket');
+  it('should request post by id', () => {
+    const props = {
+      postId: 1,
+    };
+    postsService.getPost(props);
+    const expected = {
+      method: 'get',
+      url: 'http://localhost:3001/api/v0/posts/1',
+    };
+    expect(requestFN).toHaveBeenCalledWith(expected);
+  });
 });
