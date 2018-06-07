@@ -16,3 +16,5 @@ export const getToken = () => {
 export const isTokenValid = token => token && (token.exp > Date.now() / 1000);
 
 export const clearAccessToken = () => accessTokenService.removeToken();
+
+export const setToken = token => accessTokenService.setToken(token);

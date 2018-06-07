@@ -1,3 +1,53 @@
+// import React, {PureComponent} from 'react';
+// import PropTypes from 'prop-types';
+// import {connect} from 'react-redux';
+// import Posts from './components/posts';
+// import {
+//   connectPosts,
+//   close,
+//   selectPosts,
+//   selectIsLoading,
+// } from './state';
+
+// class PostsContainer extends PureComponent {
+//   componentDidMount() {
+//     const {initialize} = this.props;
+//     initialize();
+//   }
+
+//   componentWillUnmount() {
+//     const {closeConnection} = this.props;
+//     closeConnection();
+//   }
+
+//   render() {
+//     const {posts, isLoading} = this.props;
+//     return (<Posts
+//       posts={posts}
+//       isLoading={isLoading}
+//     />);
+//   }
+// }
+
+// PostsContainer.propTypes = {
+//   posts: PropTypes.arrayOf(PropTypes.shape({
+//     id: PropTypes.string,
+//   })).isRequired,
+//   isLoading: PropTypes.bool.isRequired,
+//   initialize: PropTypes.func.isRequired,
+//   closeConnection: PropTypes.func.isRequired,
+// };
+
+// const mapStateToProps = state => ({
+//   posts: selectPosts(state),
+//   isLoading: selectIsLoading(state),
+// });
+
+// export default connect(mapStateToProps, {
+//   initialize: connectPosts,
+//   closeConnection: close,
+// })(PostsContainer);
+
 import React from 'react';
 import configureMockStore from 'redux-mock-store';
 import {createEpicMiddleware} from 'redux-observable';
@@ -12,6 +62,7 @@ import {
 import {initialState} from './state/posts-reducer';
 import PostsContainer from './posts';
 import Posts from './components/posts';
+import mapPosts from './state/transform-posts';
 
 describe('Posts', () => {
   describe('Container', () => {
@@ -58,11 +109,11 @@ describe('Posts', () => {
     let store = mockStore({
       posts: {
         ...initialState,
-      }
+      },
     });
 
     beforeEach(() => {
-      const postsState = initialState.set('posts', posts);
+      const postsState = initialState.set('posts', mapPosts(posts));
       store = mockStore({
         posts: postsState,
       });
@@ -83,7 +134,7 @@ describe('Posts', () => {
         <PostsContainer />
       </TestContainer>); // eslint-disable-line
       const actual = wrapper.find(Posts).props();
-      expect({posts, isLoading: false}).toEqual(actual);
+      expect({posts: mapPosts(posts), isLoading: false}).toEqual(actual);
     });
     it('should redner Posts', () => {
       const wrapper = mount(<TestContainer store={store}>
